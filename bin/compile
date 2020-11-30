@@ -16,6 +16,16 @@ fi
 
 APP_BASE="$(cat "${ENV_DIR}/APP_BASE")"
 
+acceptlist_regex=${2:-''}
+denylist_regex=${3:-'^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|BUILPACK_DIR|APP_BASE|STAGE)$'}
+if [ -d "$ENV_DIR" ]; then
+for e in $(ls $env_dir); do
+    echo "$e" | grep -E "$acceptlist_regex" | grep -qvE "$denylist_regex" &&
+    export "$e=$(cat $ENV_DIR/$e)"
+    :
+done
+fi
+
 cd "${BUILD_DIR}"
 
 header "Installing dependencies (lerna bootstrap)"
