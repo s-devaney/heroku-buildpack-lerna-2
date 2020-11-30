@@ -36,6 +36,4 @@ lerna run build --scope="${APP_BASE}" --include-dependencies --stream 2>&1 | out
 
 declare -p
 
-printenv
-
 header "Success!"
