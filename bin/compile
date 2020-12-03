@@ -19,7 +19,7 @@ APP_BASE="$(cat "${ENV_DIR}/APP_BASE")"
 # Define environnement variables so we can use them in the build
 if [ -d "$ENV_DIR" ]; then
     for e in $(ls $ENV_DIR); do
-        export "$e=$(cat $env_dir/$e)"
+        export "$e=$(cat $ENV_DIR/$e)"
     done
 fi
 
