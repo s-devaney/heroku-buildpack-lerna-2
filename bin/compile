@@ -16,7 +16,11 @@ fi
 
 APP_BASE="$(cat "${ENV_DIR}/APP_BASE")"
 
-export LERNA_TEST="my value"
+if [ -d "$ENV_DIR" ]; then
+    for e in $(ls $ENV_DIR); do
+        echo "$e"
+    done
+fi
 
 cd "${BUILD_DIR}"
 
