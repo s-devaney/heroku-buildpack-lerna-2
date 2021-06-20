@@ -32,3 +32,16 @@ header "Building ${APP_BASE} and its dependencies"
 lerna run build --scope="${APP_BASE}" --include-dependencies --stream 2>&1 | output
 
 header "Success!"
+
+(
+    mv "${BUILD_DIR}/packages/${APP_BASE}" "${STAGE}" &&
+    rm -rf "${BUILD_DIR}"/* &&
+    mv "${STAGE}/$(basename "$APP_BASE")"/* "${BUILD_DIR}"
+)
+
+if [ $? -ne 0 ]; then
+    echo "FAILED to copy directory into place" | indent
+    exit 1
+fi
+
+echo "Copied ${APP_BASE} to root of app successfully" | indent
