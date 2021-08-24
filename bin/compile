@@ -34,7 +34,7 @@ cd "${BUILD_DIR}"
 header "Installing dependencies (lerna bootstrap)"
 lerna bootstrap --scope="${APP_BASE}" --include-dependencies 2>&1 | output
 
-cd packages/hybrid-app
+cd "packages/hybrid-app"
 
 npm run build 2>&1 | output
 
