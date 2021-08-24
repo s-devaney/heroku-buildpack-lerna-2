@@ -34,7 +34,13 @@ cd "${BUILD_DIR}"
 header "Installing dependencies (lerna bootstrap)"
 lerna bootstrap --scope="${APP_BASE}" --include-dependencies 2>&1 | output
 
+cd packages/hybrid-app
+
+npm run build 2>&1 | output
+
 header "Success!"
+
+cd "${BUILD_DIR"
 
 (
     mv "${BUILD_DIR}/packages/${APP_BASE}" "${STAGE}" &&
@@ -48,5 +54,3 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Copied ${APP_BASE} to root of app successfully" | indent
-
-npm run build 2>&1 | output
