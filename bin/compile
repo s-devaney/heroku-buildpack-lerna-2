@@ -52,6 +52,4 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-react-scripts build
-
 echo "Copied ${APP_BASE} to root of app successfully" | indent
